@@ -2,7 +2,7 @@
 
 **Interactive web demo** exploring how task-specific instructions reshape QWEN-3 embeddings using the 20 Newsgroups dataset.
 
-👉 **[View Live Demo](https://yourusername.github.io/newsgroups-qwen-embed/)**
+👉 **[View Live Demo](https://jackliddle.github.io/newsgroups-qwen-embed/)** | 📦 **[GitHub Repository](https://github.com/jackliddle/newsgroups-qwen-embed)**
 
 ## What It Does
 

@@ -98,8 +98,7 @@ function selectTask(task) {
 function updateDetailsPanel(task) {
     const taskInfo = TASKS[task];
     const detailsHtml = `
-        <h2>Details about the prompt and what you see here</h2>
-        <p>${taskInfo.description}</p>
+        <h2><strong>${taskInfo.name}</strong></h2>
         ${taskInfo.instruction ? `
             <div class="task-instruction">
                 <h3>Task Instruction</h3>
@@ -111,6 +110,7 @@ function updateDetailsPanel(task) {
                 <p>No specific instruction provided</p>
             </div>
         `}
+        <p>${taskInfo.description}</p>
         <div class="legend-info">
             <h3>About the Visualization</h3>
             <p>Each point represents a document from the 20 Newsgroups dataset. Colors indicate different categories. Hover over points to see the text preview. The UMAP projection shows how the task instruction reshapes the embedding space.</p>
