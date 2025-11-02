@@ -5,10 +5,20 @@ const TASKS = {
         instruction: null,
         description: 'Default embeddings with no specific task instruction. This provides a general-purpose representation of the text, capturing overall semantic meaning without being optimized for any specific downstream task.'
     },
+    topic: {
+        name: 'Topic',
+        instruction: 'Identify the topic or theme of the given text',
+        description: 'Embeddings optimized for topic classification. The model emphasizes subject matter and thematic content, making it easier to distinguish between different topics like science, politics, sports, and religion.'
+    },
     sentiment: {
         name: 'Sentiment',
         instruction: 'Classify the sentiment of the given text as positive, negative, or neutral',
         description: 'Embeddings optimized for sentiment analysis. The model focuses on emotional tone and polarity, grouping texts by whether they express positive, negative, or neutral sentiment.'
+    },
+    toxicity: {
+        name: 'Toxicity',
+        instruction: 'Classify the given text as either toxic or not toxic',
+        description: 'Embeddings optimized for toxicity detection. The model focuses on discourse patterns, inflammatory language, and potentially harmful content, helping identify civil vs. uncivil discussions.'
     }
 };
 
@@ -103,7 +113,7 @@ function updateDetailsPanel(task) {
         `}
         <div class="legend-info">
             <h3>About the Visualization</h3>
-            <p>Each point represents a document sampled from 10 categories of the 20 Newsgroups dataset. Colors indicate different categories. Hover over points to see the text preview. The UMAP projection shows how the task instruction reshapes the embedding space.</p>
+            <p>Each point represents a document from the 20 Newsgroups dataset. Colors indicate different categories. Hover over points to see the text preview. The UMAP projection shows how the task instruction reshapes the embedding space.</p>
         </div>
     `;
 

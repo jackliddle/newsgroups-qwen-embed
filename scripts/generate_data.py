@@ -3,7 +3,7 @@ Generate embeddings data for GitHub Pages visualization.
 
 This script:
 1. Loads 20 newsgroups dataset (10 categories, ~800 samples)
-2. Embeds texts with 2 task instructions (default, sentiment)
+2. Embeds texts with 4 task instructions (default, sentiment, topic, toxicity)
 3. Applies UMAP dimensionality reduction to each task's embeddings
 4. Outputs JSON file with coordinates for web visualization
 """
@@ -39,7 +39,9 @@ CATEGORIES = [
 
 TASKS = {
     'default': None,
-    'sentiment': "Classify the sentiment of the given text as positive, negative, or neutral"
+    'sentiment': "Classify the sentiment of the given text as positive, negative, or neutral",
+    'topic': "Identify the topic or theme of the given text",
+    'toxicity': "Classify the given text as either toxic or not toxic"
 }
 
 N_SAMPLES = 80  # Per category
@@ -86,7 +88,7 @@ def load_and_preprocess_data():
 
 async def generate_embeddings(df):
     """Generate embeddings for all tasks."""
-    print("\nGenerating embeddings for 2 tasks...")
+    print("\nGenerating embeddings for 4 tasks...")
 
     config = EmbeddingConfig(
         model=QwenModel.SMALL,

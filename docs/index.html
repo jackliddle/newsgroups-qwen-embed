@@ -21,7 +21,9 @@
     <!-- Task Selection Buttons -->
     <div class="task-buttons">
         <button class="task-btn active" data-task="default">Default</button>
+        <button class="task-btn inactive" data-task="topic">Topic</button>
         <button class="task-btn inactive" data-task="sentiment">Sentiment</button>
+        <button class="task-btn inactive" data-task="toxicity">Toxicity</button>
     </div>
 
     <!-- Main Content -->
@@ -48,8 +50,8 @@
             <p>
                 This interactive visualization demonstrates how <strong>task-specific instructions</strong>
                 affect <a href="https://arxiv.org/abs/2506.05176" target="_blank" style="color: #3b82f6; text-decoration: none; font-weight: 600;">QWEN-3 embedding models</a>. The same 800 documents (sampled from 10 newsgroup categories
-                from the 20 Newsgroups dataset) are embedded two different ways: with no instruction (default) and with a
-                sentiment classification instruction, showing how the task instruction reshapes the embedding space.
+                from the 20 Newsgroups dataset) are embedded four different ways, showing how the task instruction
+                reshapes the embedding space.
             </p>
 
             <h3 style="margin-top: 20px; margin-bottom: 10px; font-size: 18px;">What are embeddings?</h3>
@@ -65,10 +67,12 @@
                 on relevant features for that task.
             </p>
 
-            <h3 style="margin-top: 20px; margin-bottom: 10px; font-size: 18px;">The Two Tasks</h3>
+            <h3 style="margin-top: 20px; margin-bottom: 10px; font-size: 18px;">The Four Tasks</h3>
             <ul>
                 <li><strong>Default:</strong> General-purpose embeddings with no specific instruction</li>
+                <li><strong>Topic:</strong> Optimized for identifying subject matter and themes</li>
                 <li><strong>Sentiment:</strong> Optimized for detecting positive, negative, or neutral sentiment</li>
+                <li><strong>Toxicity:</strong> Optimized for detecting toxic or harmful content</li>
             </ul>
 
             <h3 style="margin-top: 20px; margin-bottom: 10px; font-size: 18px;">The Dataset</h3>
