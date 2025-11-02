@@ -21,7 +21,7 @@ This project demonstrates how **task-specific instructions** reshape QWEN-3 embe
 
 ## Why This Matters
 
-Traditional embeddings give you **one view** of your data. QWEN-3 task-specific embeddings give you **infinite views**:
+Traditional embeddings give you one view of your data. Task-specific embeddings let you reorganize the same data for different purposes:
 
 - ✨ **Same documents, different organization** based on your task
 - 🚀 **No model fine-tuning or training required** — just change the instruction
@@ -29,7 +29,7 @@ Traditional embeddings give you **one view** of your data. QWEN-3 task-specific 
 - 🎯 **Better downstream performance** when embeddings align with your goal
 - 💰 **One model, multiple use cases** — no need to maintain separate embeddings
 
-This isn't just clustering—it's **semantic reconfiguration**. Watch the same 800 documents reorganize from topic-based clusters to sentiment gradients to toxicity patterns, all with a single API parameter.
+The same 800 documents organize as tight topic clusters, smooth sentiment gradients, or toxicity-based groupings depending on the task instruction you provide.
 
 ## Features
 
