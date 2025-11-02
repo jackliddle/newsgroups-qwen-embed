@@ -10,8 +10,8 @@ This demo shows how the **same documents** embedded with **different task instru
 
 - **Default**: General-purpose embeddings (no instruction)
 - **Sentiment**: Optimized for sentiment classification
-- **Topic**: Optimized for topic identification
-- **Toxicity**: Optimized for toxicity detection
+
+By comparing just two tasks, users can clearly see how task-specific instructions reshape the embedding space.
 
 ## Features
 
@@ -39,8 +39,9 @@ Simply open `docs/index.html` in your browser, or deploy to GitHub Pages:
 # Install dependencies
 poetry install
 
-# Create .env file with your API key
-echo "SILICONFLOW_API_KEY=your_key_here" > .env
+# Copy .env.example and add your API key
+cp .env.example .env
+# Edit .env and add your SiliconFlow API key
 
 # Generate embeddings data (optional - already included)
 poetry run python scripts/generate_data.py
@@ -55,16 +56,15 @@ poetry run jupyter notebook newsgroups_embeddings_demo.ipynb
 newsgroups-qwen-embed/
 ├── docs/                           # GitHub Pages web app
 │   ├── index.html                  # Single-page app
-│   ├── data.json                   # Pre-generated embeddings (1.18 MB)
+│   ├── data.json                   # Pre-generated embeddings (~600 KB)
 │   └── assets/
 │       ├── css/style.css           # Styling
 │       └── js/app.js               # Plotly visualization logic
 ├── scripts/
 │   └── generate_data.py            # Data generation script
 ├── qwen_embedder.py                # QWEN-3 embedding client
-├── newsgroups_embeddings_demo.ipynb # Tutorial notebook
-├── task_prompts.json               # Example task instructions
-├── QWEN-EMBED.md                   # API documentation
+├── newsgroups_embeddings_demo.ipynb # Hands-on tutorial notebook
+├── .env.example                    # API key template
 ├── pyproject.toml                  # Poetry dependencies
 └── README.md                       # This file
 ```
@@ -75,11 +75,12 @@ newsgroups-qwen-embed/
 
 The generation script:
 - Loads 800 documents from 10 newsgroup categories
-- Embeds each document 4 times with different task instructions
+- Embeds each document 2 times with different task instructions (default + sentiment)
 - Applies UMAP dimensionality reduction (1024D → 2D)
 - Saves coordinates and text previews to `docs/data.json`
 
-**Run time**: ~30 seconds for 800 documents × 4 tasks
+**Run time**: ~5 minutes for 800 documents × 2 tasks
+**Cost**: ~$0.80 in API credits (640K tokens)
 
 ### 2. Web App (`docs/index.html`)
 
@@ -94,10 +95,13 @@ The web app:
 ### 3. Tutorial Notebook (`newsgroups_embeddings_demo.ipynb`)
 
 The notebook:
+- **Hands-on tutorial** - Actually runs the embedding code (not just loads data)
 - Explains the concept of task-specific embeddings
-- Loads pre-generated data from `docs/data.json`
-- Shows how to visualize and analyze the results
+- Embeds 800 documents with 2 tasks (default + sentiment)
+- Applies UMAP and creates comparison visualizations
 - Provides educational context and exploration ideas
+
+**Note**: Requires SiliconFlow API key in `.env` file
 
 ## Configuration
 
@@ -140,43 +144,47 @@ config = EmbeddingConfig(
 
 - **Model**: QWEN-3-Embedding-0.6B (1024 dimensions)
 - **API**: SiliconFlow
-- **Dataset**: 20 Newsgroups (10 categories, 80 docs each)
+- **Dataset**: 20 Newsgroups (10 categories, 80 docs each = 800 total)
+- **Tasks**: 2 (Default + Sentiment)
 - **Reduction**: UMAP (n_neighbors=15, min_dist=0.1)
-- **Cost**: ~640K tokens for full generation
+- **Cost**: ~$0.80 USD (640K tokens = 800 docs × 2 tasks × ~400 tokens/doc)
 - **Performance**: Async batching with rate limiting (33 req/sec)
 
 ## Key Insights
 
 ### What to Look For
 
-1. **Topic Task**: Best separation of newsgroup categories (task aligns with classification goal)
-2. **Sentiment Task**: Groups by emotional tone rather than subject matter
-3. **Toxicity Task**: Reveals discourse patterns (political vs technical groups)
-4. **Default**: Balanced, general-purpose organization
+1. **Default Task**: General-purpose organization based on overall semantic similarity
+2. **Sentiment Task**: Reorganizes by emotional tone rather than subject matter
+3. **Comparison**: The same documents occupy completely different positions in the two spaces!
 
 ### Questions to Explore
 
-- Which categories cluster together vs separate?
-- How do political/religious groups differ from technical ones in toxicity?
-- Does sentiment correlate with topic, or are they orthogonal?
+- Which categories cluster together in each space?
+- Do political/religious groups show different sentiment patterns than technical ones?
+- Does sentiment correlate with topic, or are they independent?
 - When would you choose task-specific vs default embeddings?
+- Try modifying the notebook to compare other tasks (topic, toxicity, emotion, etc.)
 
 ## Extending the Demo
 
 ### Try Different Tasks
 
-Edit `scripts/generate_data.py` and modify the `TASKS` dictionary:
+Edit the notebook or `scripts/generate_data.py` and modify the task instructions:
 
 ```python
-TASKS = {
-    'default': None,
-    'emotion': "Classify the emotion expressed in the given text into one of the six emotions: anger, fear, joy, love, sadness, and surprise",
-    'query': "Retrieve semantically similar text",
-    'summary': "Generate a concise summary of the given text"
-}
-```
+# Topic classification
+"Identify the topic or theme of the given text"
 
-See [task_prompts.json](./task_prompts.json) for more QWEN-tested instructions.
+# Toxicity detection
+"Classify the given text as either toxic or not toxic"
+
+# Emotion recognition
+"Classify the emotion expressed in the given text into one of the six emotions: anger, fear, joy, love, sadness, and surprise"
+
+# Query-document matching
+"Given a web search query, retrieve relevant passages that answer the query"
+```
 
 ### Add More Categories
 
@@ -194,6 +202,8 @@ CATEGORIES = [
 
 ## References
 
-- [QWEN-3 Embeddings Documentation](./QWEN-EMBED.md)
+- [QWEN-3 Embedding arXiv Paper](https://arxiv.org/abs/2506.05176)
+- [Official QWEN Repository](https://github.com/QwenLM/Qwen3-Embedding)
 - [SiliconFlow API](https://siliconflow.com)
 - [20 Newsgroups Dataset](https://scikit-learn.org/stable/datasets/real_world.html#newsgroups-dataset)
+- [UMAP Documentation](https://umap-learn.readthedocs.io/)

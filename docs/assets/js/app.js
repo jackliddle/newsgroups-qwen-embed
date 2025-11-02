@@ -9,16 +9,6 @@ const TASKS = {
         name: 'Sentiment',
         instruction: 'Classify the sentiment of the given text as positive, negative, or neutral',
         description: 'Embeddings optimized for sentiment analysis. The model focuses on emotional tone and polarity, grouping texts by whether they express positive, negative, or neutral sentiment.'
-    },
-    topic: {
-        name: 'Topic',
-        instruction: 'Identify the topic or theme of the given text',
-        description: 'Embeddings optimized for topic classification. The model emphasizes subject matter and thematic content, making it easier to distinguish between different topics like science, politics, sports, and religion.'
-    },
-    toxicity: {
-        name: 'Toxicity',
-        instruction: 'Classify the given text as either toxic or not toxic',
-        description: 'Embeddings optimized for toxicity detection. The model focuses on discourse patterns, inflammatory language, and potentially harmful content, helping identify civil vs. uncivil discussions.'
     }
 };
 
