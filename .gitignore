@@ -30,14 +30,13 @@ wheels/
 # Poetry
 poetry.lock
 
-# Project specific
-embeddings/
+# Project specific (old - no longer used)
 checkpoints/
-data/
-visualizations/
 *.pkl
 *.npy
 *.npz
+
+# Keep docs/data.json for GitHub Pages (it's committed)
 
 # IDEs
 .vscode/

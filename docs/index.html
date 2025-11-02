@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QWEN 3 Embedding Demo</title>
+
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>QWEN 3 Embedding Demo</h1>
+        <button id="what-is-this-btn">What is this?</button>
+    </header>
+
+    <!-- Task Selection Buttons -->
+    <div class="task-buttons">
+        <button class="task-btn active" data-task="default">Default</button>
+        <button class="task-btn inactive" data-task="topic">Topic</button>
+        <button class="task-btn inactive" data-task="sentiment">Sentiment</button>
+        <button class="task-btn inactive" data-task="toxicity">Toxicity</button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <!-- Plot Container -->
+        <div class="plot-container">
+            <div id="plot">
+                <div class="loading">Loading visualization...</div>
+            </div>
+        </div>
+
+        <!-- Details Panel -->
+        <div class="details-panel">
+            <h2>Details about the prompt and what you see here</h2>
+            <p>Select a task above to see how different instructions affect the embedding space.</p>
+        </div>
+    </div>
+
+    <!-- Overlay for "What is this?" -->
+    <div class="overlay">
+        <div class="overlay-content">
+            <h2>About This Demo</h2>
+
+            <p>
+                This interactive visualization demonstrates how <strong>task-specific instructions</strong>
+                affect <a href="https://arxiv.org/abs/2506.05176" target="_blank" style="color: #3b82f6; text-decoration: none; font-weight: 600;">QWEN-3 embedding models</a>. The same 800 documents (sampled from 10 newsgroup categories
+                from the 20 Newsgroups dataset) are embedded four different ways, showing how the instruction
+                reshapes the embedding space.
+            </p>
+
+            <h3 style="margin-top: 20px; margin-bottom: 10px; font-size: 18px;">What are embeddings?</h3>
+            <p>
+                Embeddings are dense vector representations of text that capture semantic meaning.
+                Similar texts have similar embeddings, enabling machines to understand and compare documents.
+            </p>
+
+            <h3 style="margin-top: 20px; margin-bottom: 10px; font-size: 18px;">What are task instructions?</h3>
+            <p>
+                QWEN-3 embeddings can be optimized for specific tasks by providing an instruction like
+                "Classify the sentiment..." or "Identify the topic...". This guides the model to focus
+                on relevant features for that task.
+            </p>
+
+            <h3 style="margin-top: 20px; margin-bottom: 10px; font-size: 18px;">The Four Tasks</h3>
+            <ul>
+                <li><strong>Default:</strong> General-purpose embeddings with no specific instruction</li>
+                <li><strong>Sentiment:</strong> Optimized for detecting positive, negative, or neutral sentiment</li>
+                <li><strong>Topic:</strong> Optimized for identifying subject matter and themes</li>
+                <li><strong>Toxicity:</strong> Optimized for detecting toxic or harmful content</li>
+            </ul>
+
+            <h3 style="margin-top: 20px; margin-bottom: 10px; font-size: 18px;">The Dataset</h3>
+            <p>
+                We sampled 10 categories from the 20 Newsgroups dataset, including politics, science, sports,
+                and religion. Each point represents one document, colored by its category. The 2D projection
+                uses UMAP dimensionality reduction.
+            </p>
+
+            <h3 style="margin-top: 20px; margin-bottom: 10px; font-size: 18px;">How to Use</h3>
+            <ul>
+                <li>Click the task buttons to switch between different embedding spaces</li>
+                <li>Hover over points to see text previews</li>
+                <li>Observe how documents cluster differently based on the task</li>
+                <li>Compare which tasks best separate the newsgroup categories</li>
+            </ul>
+
+            <h3 style="margin-top: 20px; margin-bottom: 10px; font-size: 18px;">Technical Details</h3>
+            <p>
+                Model: QWEN-3-Embedding-0.6B (1024 dimensions)<br>
+                Reduction: UMAP (n_neighbors=15, min_dist=0.1)<br>
+                Documents: 800 (80 per category)<br>
+                API: SiliconFlow
+            </p>
+
+            <button class="close-btn" id="close-overlay">Close</button>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
