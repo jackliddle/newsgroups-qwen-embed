@@ -18,16 +18,16 @@
             <h1>QWEN 3 Embedding Demo</h1>
             <p class="subtitle"><a href="https://github.com/jackliddle/newsgroups-qwen-embed" target="_blank">View on GitHub</a></p>
         </div>
+
+        <div class="task-buttons">
+            <button class="task-btn active" data-task="default">🔷 Default</button>
+            <button class="task-btn inactive" data-task="topic">🎯 Topic</button>
+            <button class="task-btn inactive" data-task="toxicity">⚠️ Toxicity</button>
+            <button class="task-btn inactive" data-task="sentiment">😊 Sentiment</button>
+        </div>
+
         <button id="what-is-this-btn">What is this?</button>
     </header>
-
-    <!-- Task Selection Buttons -->
-    <div class="task-buttons">
-        <button class="task-btn active" data-task="default">Default</button>
-        <button class="task-btn inactive" data-task="topic">Topic</button>
-        <button class="task-btn inactive" data-task="sentiment">Sentiment</button>
-        <button class="task-btn inactive" data-task="toxicity">Toxicity</button>
-    </div>
 
     <!-- Main Content -->
     <div class="content">
@@ -38,59 +38,61 @@
             </div>
         </div>
 
-        <!-- Details Panel -->
-        <div class="details-panel">
-            <h2><strong>Loading...</strong></h2>
-            <p>Select a task above to see how different instructions affect the embedding space.</p>
+        <!-- Right Column -->
+        <div class="right-column">
+            <!-- Task Details Panel -->
+            <div class="details-panel">
+                <h2><strong>Loading...</strong></h2>
+                <p>Select a task above to see how different instructions affect the embedding space.</p>
+            </div>
+
+            <!-- About Visualization Panel -->
+            <div class="about-panel">
+                <h3>About the Visualization</h3>
+                <p>Each point represents a document from the 20 Newsgroups dataset. Colors indicate different categories. Hover over points to see the text preview. The UMAP projection shows how the task instruction reshapes the embedding space.</p>
+            </div>
         </div>
     </div>
 
     <!-- Overlay for "What is this?" -->
     <div class="overlay">
         <div class="overlay-content">
-            <h2>About This Demo</h2>
+            <h2>Task-Specific Embeddings: One model, different perspectives, no fine-tuning</h2>
 
             <p>
-                This interactive visualization demonstrates how <strong>task-specific instructions</strong>
-                affect <a href="https://arxiv.org/abs/2506.05176" target="_blank" style="color: #3b82f6; text-decoration: none; font-weight: 600;">QWEN-3 embedding models</a>. The same 800 documents (sampled from 10 newsgroup categories
-                from the 20 Newsgroups dataset) are embedded four different ways, showing how the task instruction
-                reshapes the embedding space.
+                This interactive visualization demonstrates how <strong>task instructions</strong> reshape
+                <a href="https://arxiv.org/abs/2506.05176" target="_blank" style="color: #3b82f6; text-decoration: none; font-weight: 600;">QWEN-3 embedding models</a>. Watch the same 800 documents (from 10 newsgroup categories) reorganize themselves four different ways—all through task instructions.
             </p>
 
             <h3 style="margin-top: 20px; margin-bottom: 10px; font-size: 18px;">What are embeddings?</h3>
             <p>
-                Embeddings are dense vector representations of text that capture semantic meaning.
-                Similar texts have similar embeddings, enabling machines to understand and compare documents.
+                Embeddings are vector representations of text that capture semantic meaning. Similar texts have similar embeddings, enabling machines to understand and compare documents.
             </p>
 
-            <h3 style="margin-top: 20px; margin-bottom: 10px; font-size: 18px;">What are task instructions?</h3>
+            <h3 style="margin-top: 20px; margin-bottom: 10px; font-size: 18px;">What makes task instructions powerful?</h3>
             <p>
-                QWEN-3 embeddings can be optimized for specific tasks by providing an instruction like
-                "Classify the sentiment..." or "Identify the topic...". This guides the model to focus
-                on relevant features for that task.
+                By providing an instruction like "Classify the sentiment..." or "Identify the topic...", you guide the model to reorganize the embedding space around task-relevant features. Same 800 documents, four completely different organizations.
             </p>
 
             <h3 style="margin-top: 20px; margin-bottom: 10px; font-size: 18px;">The Four Tasks</h3>
             <ul>
                 <li><strong>Default:</strong> General-purpose embeddings with no specific instruction</li>
                 <li><strong>Topic:</strong> Optimized for identifying subject matter and themes</li>
-                <li><strong>Sentiment:</strong> Optimized for detecting positive, negative, or neutral sentiment</li>
-                <li><strong>Toxicity:</strong> Optimized for detecting toxic or harmful content</li>
+                <li><strong>Sentiment:</strong> Optimized for detecting positive, negative, or neutral tone</li>
+                <li><strong>Toxicity:</strong> Optimized for detecting harmful or toxic content</li>
             </ul>
 
             <h3 style="margin-top: 20px; margin-bottom: 10px; font-size: 18px;">The Dataset</h3>
             <p>
-                We sampled 10 categories from the 20 Newsgroups dataset, including politics, science, sports,
-                and religion. Each point represents one document, colored by its category. The 2D projection
-                uses UMAP dimensionality reduction.
+                10 categories from the 20 Newsgroups dataset (politics, science, sports, religion). Each point is one document, colored by category. The 2D projection uses UMAP dimensionality reduction.
             </p>
 
             <h3 style="margin-top: 20px; margin-bottom: 10px; font-size: 18px;">How to Use</h3>
             <ul>
-                <li>Click the task buttons to switch between different embedding spaces</li>
-                <li>Hover over points to see text previews</li>
-                <li>Observe how documents cluster differently based on the task</li>
-                <li>Compare which tasks best separate the newsgroup categories</li>
+                <li><strong>Click the task buttons</strong> to switch between embedding spaces</li>
+                <li><strong>Hover over points</strong> to see text previews</li>
+                <li><strong>Observe how organization changes</strong>: Topic creates tight clusters, Sentiment creates gradients, Toxicity reveals discourse patterns</li>
+                <li><strong>Ask yourself</strong>: Which task alignment would improve <em>your</em> downstream performance?</li>
             </ul>
 
             <h3 style="margin-top: 20px; margin-bottom: 10px; font-size: 18px;">Technical Details</h3>

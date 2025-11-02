@@ -1,6 +1,6 @@
 # QWEN-3 Multi-Task Embeddings Demo
 
-**Interactive web demo** exploring how task-specific instructions reshape QWEN-3 embeddings using the 20 Newsgroups dataset.
+**Watch embeddings transform in real-time**: One model, four perspectives. See how task-specific instructions reshape semantic space—no fine-tuning required.
 
 👉 **[View Live Demo](https://jackliddle.github.io/newsgroups-qwen-embed/)** | 📦 **[GitHub Repository](https://github.com/jackliddle/newsgroups-qwen-embed)**
 
@@ -18,6 +18,18 @@ This project demonstrates how **task-specific instructions** reshape QWEN-3 embe
 - **Default** vs **Sentiment** comparison
 - Hands-on tutorial for learning the API
 - Simpler and cheaper for experimentation
+
+## Why This Matters
+
+Traditional embeddings give you **one view** of your data. QWEN-3 task-specific embeddings give you **infinite views**:
+
+- ✨ **Same documents, different organization** based on your task
+- 🚀 **No model fine-tuning or training required** — just change the instruction
+- ⚡ **Instant task switching** for rapid experimentation
+- 🎯 **Better downstream performance** when embeddings align with your goal
+- 💰 **One model, multiple use cases** — no need to maintain separate embeddings
+
+This isn't just clustering—it's **semantic reconfiguration**. Watch the same 800 documents reorganize from topic-based clusters to sentiment gradients to toxicity patterns, all with a single API parameter.
 
 ## Features
 
@@ -49,10 +61,10 @@ poetry install
 cp .env.example .env
 # Edit .env and add your SiliconFlow API key
 
-# Option 1: Run the educational notebook (2 tasks, ~$0.80)
+# Option 1: Run the educational notebook (2 tasks)
 poetry run jupyter notebook newsgroups_embeddings_demo.ipynb
 
-# Option 2: Regenerate web app data (4 tasks, ~$1.60)
+# Option 2: Regenerate web app data (4 tasks)
 poetry run python scripts/generate_data.py
 ```
 
@@ -85,9 +97,6 @@ The generation script creates data for the **web app showcase**:
 - Applies UMAP dimensionality reduction (1024D → 2D)
 - Saves coordinates and text previews to `docs/data.json`
 
-**Run time**: ~10 minutes for 800 documents × 4 tasks
-**Cost**: ~$1.60 in API credits (1.28M tokens)
-
 ### 2. Web App (`docs/index.html`)
 
 The **interactive showcase** with **4 tasks**:
@@ -108,8 +117,6 @@ The **educational tutorial** with **2 tasks**:
 - Applies UMAP and creates 2-panel comparison
 - No data files saved (educational purposes only)
 
-**Run time**: ~5 minutes
-**Cost**: ~$0.80 in API credits (640K tokens)
 **Note**: Requires SiliconFlow API key in `.env` file
 
 ## Configuration
@@ -154,8 +161,8 @@ config = EmbeddingConfig(
 - **Model**: QWEN-3-Embedding-0.6B (1024 dimensions)
 - **API**: SiliconFlow
 - **Dataset**: 20 Newsgroups (10 categories, 80 docs each = 800 total)
-- **Web App**: 4 tasks (Default + Topic + Sentiment + Toxicity) ~$1.60
-- **Notebook**: 2 tasks (Default + Sentiment) ~$0.80
+- **Web App**: 4 tasks (Default + Topic + Sentiment + Toxicity)
+- **Notebook**: 2 tasks (Default + Sentiment)
 - **Reduction**: UMAP (n_neighbors=15, min_dist=0.1)
 - **Performance**: Async batching with rate limiting (33 req/sec)
 
@@ -163,22 +170,21 @@ config = EmbeddingConfig(
 
 ### What to Look For (Web App - 4 Tasks)
 
-1. **Topic Task**: Best separation of newsgroup categories (task aligns with classification goal)
-2. **Sentiment Task**: Groups by emotional tone rather than subject matter
-3. **Toxicity Task**: Reveals discourse patterns (political vs technical groups)
-4. **Default**: Balanced, general-purpose organization
+1. **🎯 Topic Task**: Dramatically improved category separation — documents cluster tightly by subject matter with minimal bleed-through. Perfect for classification tasks.
+2. **😊 Sentiment Task**: Category boundaries dissolve into a smooth gradient from negative to positive emotional tone. Shows sentiment is orthogonal to topic.
+3. **⚠️ Toxicity Task**: Reveals discourse civility patterns — political/religious discussions cluster differently from technical communities. Style over substance.
+4. **🔷 Default**: Balanced general-purpose organization showing semantic similarity without task optimization.
 
 ### Questions to Explore
 
-- Which task creates the clearest category separation?
-- How do political/religious groups differ from technical ones in toxicity space?
-- Does sentiment correlate with topic, or are they orthogonal?
-- When would you choose task-specific vs default embeddings?
+- **Performance impact**: How much would topic-aligned embeddings improve your classifier accuracy?
+- **Efficiency gains**: What if you could skip fine-tuning and just change an instruction string?
+- **Multi-dimensional meaning**: Why does the same document appear in different positions across tasks?
+- **Use case selection**: When should you use task-specific vs default embeddings in production?
 
 ### Notebook Learning (2 Tasks)
 
 The notebook provides a simpler comparison (Default vs Sentiment) for hands-on learning:
-- Lower cost for experimentation (~$0.80 instead of ~$1.60)
 - Clearer focus on understanding one task instruction
 - Try modifying to compare other task pairs (default vs topic, default vs toxicity, etc.)
 

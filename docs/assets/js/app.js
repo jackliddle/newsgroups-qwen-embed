@@ -1,24 +1,28 @@
 // Task definitions
 const TASKS = {
     default: {
-        name: 'Default',
+        name: '🔷 Default',
         instruction: null,
-        description: 'Default embeddings with no specific task instruction. This provides a general-purpose representation of the text, capturing overall semantic meaning without being optimized for any specific downstream task.'
+        description: 'The Baseline — We observe good separation between some categories, but there\'s significant overlap and bleed-through across topics. This general-purpose embedding captures broad semantic similarities without optimization for any specific task. But watch what happens when we add task instructions...',
+        explanation: 'What does this show? The baseline embedding space organizes documents by overall semantic similarity, revealing natural groupings but without the sharpness that task-specific optimization provides.'
     },
     topic: {
-        name: 'Topic',
+        name: '🎯 Topic',
         instruction: 'Identify the topic or theme of the given text',
-        description: 'Embeddings optimized for topic classification. The model emphasizes subject matter and thematic content, making it easier to distinguish between different topics like science, politics, sports, and religion.'
-    },
-    sentiment: {
-        name: 'Sentiment',
-        instruction: 'Classify the sentiment of the given text as positive, negative, or neutral',
-        description: 'Embeddings optimized for sentiment analysis. The model focuses on emotional tone and polarity, grouping texts by whether they express positive, negative, or neutral sentiment.'
+        description: 'Remarkable! The categories show dramatically improved separation with minimal bleed-through. Documents cluster tightly by their subject matter, making topic boundaries crystal clear. This task-specific optimization would significantly boost performance for downstream classification tasks. Perfect for document routing and content categorization.',
+        explanation: 'What does this show? When optimized for topic identification, the embedding space reorganizes to emphasize subject matter, creating distinct, well-separated clusters that align perfectly with newsgroup categories.'
     },
     toxicity: {
-        name: 'Toxicity',
+        name: '⚠️ Toxicity',
         instruction: 'Classify the given text as either toxic or not toxic',
-        description: 'Embeddings optimized for toxicity detection. The model focuses on discourse patterns, inflammatory language, and potentially harmful content, helping identify civil vs. uncivil discussions.'
+        description: 'A Window Into Discourse Patterns — The visualization reveals distinct patterns in discourse civility across communities. Discussions in alt.atheism and talk.politics.mideast cluster toward higher toxicity, while rec.autos and comp.graphics show notably more civil discourse. The embedding space reorganizes around communication style rather than subject matter. This shows embeddings can detect style, not just content.',
+        explanation: 'What does this show? Optimized for toxicity detection, the embedding space highlights discourse patterns and communication style, revealing that some discussion areas naturally exhibit more contentious language than others.'
+    },
+    sentiment: {
+        name: '😊 Sentiment',
+        instruction: 'Classify the sentiment of the given text as positive, negative, or neutral',
+        description: 'A Stunning Transformation — Notice how the well-defined category clusters dissolve into a smooth gradient. Rather than grouping by topic, documents now arrange themselves along a continuous spectrum of emotional tone—from negative through neutral to positive sentiment. The embedding space has fundamentally reshaped around affective content.',
+        explanation: 'What does this show? When optimized for sentiment, the embedding space completely reorganizes around emotional tone rather than topic, creating a gradient from negative to positive affect that cuts across subject-matter boundaries.'
     }
 };
 
@@ -110,10 +114,9 @@ function updateDetailsPanel(task) {
                 <p>No specific instruction provided</p>
             </div>
         `}
-        <p>${taskInfo.description}</p>
-        <div class="legend-info">
-            <h3>About the Visualization</h3>
-            <p>Each point represents a document from the 20 Newsgroups dataset. Colors indicate different categories. Hover over points to see the text preview. The UMAP projection shows how the task instruction reshapes the embedding space.</p>
+        <div class="task-explanation">
+            <h3>What does this show?</h3>
+            <p>${taskInfo.description}</p>
         </div>
     `;
 

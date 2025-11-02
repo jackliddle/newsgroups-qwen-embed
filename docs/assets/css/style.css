@@ -16,11 +16,16 @@ body {
 /* Header */
 header {
     background-color: white;
-    border-bottom: 2px solid #e0e0e0;
     padding: 20px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 30px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.header-left {
+    flex-shrink: 0;
 }
 
 h1 {
@@ -46,35 +51,51 @@ h1 {
 }
 
 #what-is-this-btn {
-    padding: 16px 32px;
-    background-color: white;
-    border: 3px solid #333;
+    padding: 28px 32px;
+    background-color: #3b82f6;
+    color: white;
+    border: none;
     border-radius: 6px;
     font-size: 18px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+    flex-shrink: 0;
+    width: 400px;
+    text-align: center;
+    animation: pulse-cta 2s ease-in-out 3;
 }
 
 #what-is-this-btn:hover {
-    background-color: #f0f0f0;
+    background-color: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+    animation: none;
+}
+
+@keyframes pulse-cta {
+    0%, 100% {
+        box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+    }
+    50% {
+        box-shadow: 0 4px 20px rgba(59, 130, 246, 0.6);
+    }
 }
 
 /* Task buttons */
 .task-buttons {
-    padding: 20px 40px;
-    background-color: white;
-    border-bottom: 2px solid #e0e0e0;
     display: flex;
-    gap: 15px;
+    gap: 10px;
+    flex-shrink: 0;
 }
 
 .task-btn {
-    padding: 12px 24px;
-    font-size: 15px;
+    padding: 14px 36px;
+    font-size: 16px;
     font-weight: 600;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
     transition: all 0.3s;
     text-transform: capitalize;
@@ -93,6 +114,15 @@ h1 {
 .task-btn:hover {
     opacity: 0.9;
     transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.task-btn.active:hover {
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.task-btn.inactive:hover {
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
 }
 
 /* Main content */
@@ -120,15 +150,45 @@ h1 {
     min-height: 0;
 }
 
+/* Right column */
+.right-column {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow: hidden;
+}
+
 /* Details panel */
 .details-panel {
-    width: 400px;
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     padding: 30px;
-    display: flex;
-    flex-direction: column;
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* About panel */
+.about-panel {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    flex-shrink: 0;
+}
+
+.about-panel h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.about-panel p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #555;
 }
 
 .details-panel h2 {
@@ -147,23 +207,40 @@ h1 {
     margin-top: 15px;
     margin-bottom: 20px;
     padding: 15px;
-    background-color: #f9fafb;
-    border-left: 4px solid #3b82f6;
+    background-color: #dbeafe;
     border-radius: 4px;
 }
 
 .task-instruction h3 {
-    font-size: 14px;
-    font-weight: 600;
-    color: #3b82f6;
+    font-size: 12px;
+    font-weight: 700;
+    color: #1e40af;
     margin-bottom: 8px;
     text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .task-instruction p {
     font-size: 14px;
     font-style: italic;
-    color: #666;
+    color: #1e3a8a;
+}
+
+.task-explanation {
+    margin-bottom: 20px;
+}
+
+.task-explanation h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.task-explanation p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #555;
 }
 
 /* Overlay */
@@ -175,13 +252,27 @@ h1 {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     z-index: 1000;
     align-items: center;
     justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
 }
 
 .overlay.active {
     display: flex;
+    animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .overlay-content {
@@ -192,6 +283,19 @@ h1 {
     max-height: 85vh;
     overflow-y: auto;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    transform: scale(0.95);
+    animation: scaleIn 0.3s ease-in-out forwards;
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 .overlay-content h2 {
@@ -245,22 +349,3 @@ h1 {
     color: #666;
 }
 
-/* Category legend */
-.legend-info {
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid #e0e0e0;
-}
-
-.legend-info h3 {
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.legend-info p {
-    font-size: 13px;
-    line-height: 1.5;
-    color: #666;
-}

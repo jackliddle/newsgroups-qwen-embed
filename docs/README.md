@@ -79,7 +79,7 @@ python -m http.server 8000
    - **Source**: Deploy from a branch
    - **Branch**: main
    - **Folder**: /docs
-4. Save and wait ~1 minute for deployment
+4. Save and wait for deployment
 5. Access at: `https://yourusername.github.io/reponame/`
 
 ### Custom Domain (Optional)
@@ -121,9 +121,8 @@ The web app uses CDN-hosted libraries (no npm/build step required):
 
 ## Performance
 
-- **Data size**: 1.18 MB (gzipped: ~400 KB)
-- **Load time**: < 1 second on fast connections
-- **Rendering**: Instant (Plotly.js handles 800 points easily)
+- **Data size**: 1.18 MB
+- **Rendering**: Plotly.js handles 800 points efficiently
 - **Task switching**: Instant (no recomputation)
 
 ## License
