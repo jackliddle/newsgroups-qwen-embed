@@ -27,9 +27,6 @@ wheels/
 .ipynb_checkpoints
 *.ipynb_checkpoints/
 
-# Poetry
-poetry.lock
-
 # Project specific (old - no longer used)
 checkpoints/
 *.pkl
