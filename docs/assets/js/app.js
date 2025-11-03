@@ -15,13 +15,13 @@ const TASKS = {
     toxicity: {
         name: '⚠️ Toxicity',
         instruction: 'Classify the given text as either toxic or not toxic',
-        description: 'A Window Into Discourse Patterns — The visualization reveals distinct patterns in discourse civility across communities. Discussions in alt.atheism and talk.politics.mideast cluster toward higher toxicity, while rec.autos and comp.graphics show notably more civil discourse. The embedding space reorganizes around communication style rather than subject matter. This shows embeddings can detect style, not just content.',
+        description: 'A Stunning Transformation — Notice how the well-defined category clusters dissolve into a smooth gradient. Rather than grouping by topic, documents now arrange themselves along a continuous spectrum of communication style—from civil through neutral to toxic discourse. The embedding space has fundamentally reshaped around discourse patterns rather than subject matter.',
         explanation: 'What does this show? Optimized for toxicity detection, the embedding space highlights discourse patterns and communication style, revealing that some discussion areas naturally exhibit more contentious language than others.'
     },
     sentiment: {
         name: '😊 Sentiment',
         instruction: 'Classify the sentiment of the given text as positive, negative, or neutral',
-        description: 'A Stunning Transformation — Notice how the well-defined category clusters dissolve into a smooth gradient. Rather than grouping by topic, documents now arrange themselves along a continuous spectrum of emotional tone—from negative through neutral to positive sentiment. The embedding space has fundamentally reshaped around affective content.',
+        description: 'A Window Into Emotional Tone — The visualization reveals distinct patterns in sentiment across communities. The embedding space reorganizes around affective content, showing how discussions carry different emotional valences. Documents cluster by their emotional tone rather than topic, with some newsgroups showing more positive or negative sentiment patterns.',
         explanation: 'What does this show? When optimized for sentiment, the embedding space completely reorganizes around emotional tone rather than topic, creating a gradient from negative to positive affect that cuts across subject-matter boundaries.'
     }
 };
