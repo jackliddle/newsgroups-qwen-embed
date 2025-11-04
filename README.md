@@ -2,7 +2,7 @@
 
 **Watch embeddings transform in real-time**: One model, four perspectives. See how task-specific instructions reshape semantic space—no fine-tuning required.
 
-👉 **[View Live Demo](https://jackliddle.github.io/newsgroups-qwen-embed/)** | 📦 **[GitHub Repository](https://github.com/jackliddle/newsgroups-qwen-embed)**
+👉 **[View Live Demo](https://jackliddle.github.io/newsgroups-qwen-embed/)** | 📦 **[GitHub Repository](https://github.com/jackliddle/newsgroups-qwen-embed)** | 📝 **[Discussion Article](https://jackliddle.com/index.php/2025/11/03/one-model-multiple-perspectives-exploring-qwen3s-task-aware-embeddings/)**
 
 ## What It Does
 
